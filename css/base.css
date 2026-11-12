@@ -1,0 +1,49 @@
+:root{
+  --bg:#050706; --bg2:#0B100D; --panel:#101713; --panel2:#131c17;
+  --accent:#00FF88; --accent-dim:rgba(0,255,136,.09); --dark:#008F50; --ok:#39FF14;
+  --red:#FF3030; --red-dark:#6D1018;
+  --text:#E8F2EA; --muted:#92A69A; --line:#203B2B;
+  --mono:'Share Tech Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:'Chakra Petch','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --t:.25s;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.08) 3px 4px)}
+#bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.55}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip-link{position:fixed;left:.5rem;top:-4rem;z-index:1000;background:var(--accent);color:#02130a;padding:.5rem 1rem;border-radius:6px;font-family:var(--mono);text-decoration:none}
+.skip-link:focus{top:.5rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.5rem;font:600 .8rem/1 var(--mono);letter-spacing:.1em;text-decoration:none;border-radius:6px;border:1px solid transparent;transition:box-shadow var(--t),transform var(--t),border-color var(--t),color var(--t),background var(--t);min-height:44px}
+.btn-primary{background:var(--accent);color:#02130a}
+.btn-primary:hover{box-shadow:0 0 24px rgba(0,255,136,.5);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(16,23,19,.6)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,136,.18)}
+.btn-red{background:var(--red);color:#1a0000}
+.btn-red:hover{box-shadow:0 0 24px rgba(255,48,48,.5);transform:translateY(-2px)}
+.chip-btn{font:.72rem/1 var(--mono);letter-spacing:.06em;padding:.55rem .8rem;border:1px solid var(--line);border-radius:999px;background:rgba(16,23,19,.7);color:var(--muted);min-height:36px;transition:color var(--t),border-color var(--t),box-shadow var(--t)}
+.chip-btn:hover{color:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(0,255,136,.2)}
+.link-btn{background:none;border:0;color:var(--muted);font:.8rem var(--mono);text-decoration:underline;text-underline-offset:4px;padding:.5rem}
+.link-btn:hover{color:var(--accent)}
+.glass{background:rgba(16,23,19,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 .5rem}
+.tag{font:.72rem/1 var(--mono);padding:.4rem .7rem;border-radius:4px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,255,136,.22)}
+.tag.alt{background:rgba(0,143,80,.16);color:#5fe0a0;border-color:rgba(0,143,80,.5)}
+#rainCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.3;pointer-events:none}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background-image:linear-gradient(rgba(0,255,136,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.04) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 15%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 15%,transparent 75%)}
+html.tone-red body::after{background-image:linear-gradient(rgba(255,48,48,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,48,.05) 1px,transparent 1px)}
+.frags{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.frag{position:absolute;bottom:-2rem;font:.72rem var(--mono);color:var(--accent);opacity:0;white-space:nowrap;animation:floatUp linear infinite}
+html.tone-red .frag{color:var(--red)}
+@keyframes floatUp{0%{transform:translateY(0);opacity:0}10%{opacity:.17}90%{opacity:.17}100%{transform:translateY(-112vh);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .frags,#rainCanvas{display:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
