@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashna Islam | Cybersecurity Researcher</title>
+<meta name="description" content="Ashna Islam: software developer, cybersecurity researcher and AI/ML enthusiast. MiniPay, Ethereum fraud detection, and Zero Trust research published at IEEE CIACON 2026. B.Tech CSE (Cybersecurity), IEM Kolkata.">
+<meta name="theme-color" content="#050706">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+(function(){var d=document.documentElement,e=false;d.classList.add('js');
+try{e=sessionStorage.getItem('breach.entered')==='1'}catch(_){}
+if(location.hash&&location.hash.length>1)e=true;
+d.classList.add(e?'unlocked':'locked');})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/gate.css">
+<link rel="stylesheet" href="css/medium.css">
+<link rel="stylesheet" href="css/project.css">
+<link rel="stylesheet" href="css/portfolio.css">
+<noscript><style>#gate{display:none!important}#portfolio{display:block!important}</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="rainCanvas" aria-hidden="true"></canvas>
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+<div class="frags" id="frags" aria-hidden="true"></div>
+
+<!-- ============ GATE: landing, Easy, Medium, Hard transition ============ -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="ASHNA.OS access gate">
+  <header class="gate-bar">
+    <div class="gate-left"><span class="gate-brand">BREACH.exe</span><span class="gate-status" aria-hidden="true"><i></i><span id="gateStatusText">SYSTEM LOCKED</span></span></div>
+    <div class="gate-tools">
+      <button type="button" class="chip-btn snd-toggle" aria-pressed="false">Sound: off</button>
+      <button type="button" class="chip-btn" id="skipIntro">Skip intro</button>
+    </div>
+  </header>
+
+  <section id="view-landing" class="gview">
+    <h1 class="boot-title" data-focus tabindex="-1">WELCOME TO ASHNA.OS</h1>
+    <div class="boot" aria-live="polite">
+      <p class="boot-line" data-text="> Initializing security protocols..."></p>
+      <p class="boot-line warn" data-text="> Unauthorized visitor detected."></p>
+      <p class="boot-line warn" data-text="> Identity: UNKNOWN"></p>
+      <p class="boot-line" data-text="> Choose your difficulty to gain access."></p>
+    </div>
+    <div class="levels" id="levels">
+      <button type="button" class="level level-easy" data-level="easy">
+        <h2>LEVEL 01: BREACH.exe</h2>
+        <p class="level-sub">&ldquo;Think you can beat my firewall?&rdquo;</p>
+        <canvas class="fighters" id="miniFighters" width="192" height="72" aria-hidden="true"></canvas>
+        <p class="level-desc">Fight against ASHNA.OS in a 2D arcade-style battle. Click to attack, defeat the system, and unlock the portfolio.</p>
+        <span class="level-cta">INITIATE BATTLE</span>
+      </button>
+      <button type="button" class="level level-med" data-level="medium">
+        <h2>LEVEL 02: HACK MY WEBSITE</h2>
+        <p class="level-sub">&ldquo;Let&rsquo;s test your hacker instincts.&rdquo;</p>
+        <div class="lock-vis" aria-hidden="true">
+          <svg viewBox="0 0 40 48" width="40" height="48"><path class="shackle" d="M11 21v-6a9 9 0 0118 0v6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><rect x="5" y="21" width="30" height="22" rx="3" fill="currentColor"/><circle cx="20" cy="31" r="3" fill="#050706"/></svg>
+          <code>DFFHVV&nbsp;JUDQWHG</code>
+        </div>
+        <p class="level-desc">Solve a series of beginner-friendly cybersecurity puzzles to infiltrate the system and unlock access.</p>
+        <span class="level-cta">START INFILTRATION</span>
+      </button>
+      <button type="button" class="level level-hard" data-level="hard">
+        <h2>LEVEL 03: THE FINAL DECISION</h2>
+        <p class="level-sub">&ldquo;No games. Just consequences.&rdquo;</p>
+        <p class="hover-msg">The hardest decision isn&rsquo;t hacking my website. It&rsquo;s deciding whether to hire me.</p>
+        <p class="level-desc">Skip the challenges and directly inspect my skills, research, and projects.</p>
+        <span class="level-cta">FACE THE HARDEST CHOICE</span>
+      </button>
+    </div>
+    <p class="gate-foot"><button type="button" class="link-btn" data-action="enter">Just take me to the portfolio</button></p>
+  </section>
+
+  <section id="view-easy" class="gview" hidden>
+    <div class="view-bar">
+      <button type="button" class="chip-btn" data-action="menu">&larr; Difficulty select</button>
+      <div>
+        <button type="button" class="chip-btn snd-toggle" aria-pressed="false">Sound: off</button>
+        <button type="button" class="chip-btn" data-action="enter">Skip battle</button>
+      </div>
+    </div>
+    <div class="game-stage">
+      <div id="gameWrap" class="game-wrap" tabindex="0" role="application" aria-label="BREACH.exe fighting game. Click, tap or press Space to attack. Thirty-five attacks in ten seconds wins."></div>
+      <div id="gameStatus" class="game-status" role="status"></div>
+      <div id="gameResult" class="result" hidden></div>
+    </div>
+  </section>
+
+  <section id="view-medium" class="gview" hidden>
+    <div class="view-bar">
+      <button type="button" class="chip-btn" data-action="menu">&larr; Difficulty select</button>
+      <div>
+        <button type="button" class="chip-btn snd-toggle" aria-pressed="false">Sound: off</button>
+        <button type="button" class="chip-btn" data-action="enter">Skip all challenges</button>
+      </div>
+    </div>
+    <div id="puzzleRoot" class="puzzle-root"></div>
+  </section>
+
+  <section id="view-transition" class="gview gview-center" hidden>
+    <div class="trans" id="transLines" aria-live="polite"></div>
+    <p class="trans-skip">Press any key or click to skip</p>
+  </section>
+</div>
+
+<!-- ============ PORTFOLIO ============ -->
+<div id="portfolio">
+<nav class="nav" aria-label="Primary">
+  <a class="nav-logo" href="#hero">AI <span>//</span> ashna.islam</a>
+  <button type="button" class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">about</a>
+    <a href="#research">research</a>
+    <a href="#projects">projects</a>
+    <a href="#experience">experience</a>
+    <a href="#skills">skills</a>
+    <a href="#contact">contact</a>
+  </div>
+  <div class="nav-tools">
+    <span class="status" title="ASHNA.OS status"><i aria-hidden="true"></i>ASHNA.OS online</span>
+    <button type="button" class="chip-btn snd-toggle" aria-pressed="false">Sound: off</button>
+    <button type="button" class="chip-btn" id="replayBtn">Replay experience</button>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="prompt-line"><span class="p">&gt;</span> whoami</p>
+      <h1 class="hero-name"><span class="glitch" data-text="ASHNA">ASHNA</span> <span class="accent">ISLAM</span></h1>
+      <p class="hero-roles" id="heroRoles" aria-label="Software Developer | Cybersecurity Researcher | AI/ML Enthusiast"><span id="roleText">Software Developer | Cybersecurity Researcher | AI/ML Enthusiast</span><span class="caret" aria-hidden="true"></span></p>
+      <p class="hero-tagline"><strong>Third-year B.Tech (Cybersecurity)</strong> student building full-stack applications, hybrid blockchain fraud-detection systems, and context-aware Zero Trust security, published at IEEE CIACON 2026.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">EXPLORE MY WORK</a>
+        <a href="assets/Ashna_Islam_Resume.pdf" class="btn btn-ghost" download="Ashna_Islam_Resume.pdf">DOWNLOAD RESUME</a>
+        <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+      </div>
+    </div>
+    <div class="term-card" aria-label="Profile summary">
+      <div class="term-bar"><i></i><i></i><i></i></div>
+      <p><span class="cmd">$ whoami</span></p>
+      <p><span class="val">ashna_islam</span> &mdash; developer + security researcher</p>
+      <p><span class="cmd">$ cat credentials.txt</span></p>
+      <p>CGPA <span class="val">9.10</span> &middot; Dept rank <span class="val">2nd</span> &middot; IEEE paper</p>
+      <p>Chair: <span class="str">IEEE CS Student Chapter</span></p>
+      <p><span class="cmd">$ status --internships</span></p>
+      <p><span class="val">OPEN</span> &mdash; available for internships <span class="caret" aria-hidden="true"></span></p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I&rsquo;m a third-year B.Tech Computer Science and Engineering student specializing in <strong>Cybersecurity</strong> at the Institute of Engineering and Management, Kolkata.</p>
+        <p>My technical interests include <strong>software engineering, cybersecurity, blockchain analytics, machine learning,</strong> and intelligent access control systems.</p>
+        <p>I&rsquo;ve developed full-stack applications, hybrid blockchain fraud-detection systems, and a context-aware Zero Trust security model using <span class="hl">Mamdani Fuzzy Inference</span>. My Zero Trust research was published at IEEE CIACON 2026.</p>
+        <p>I also have experience in Linux security administration, cloud deployment, IoT-based agricultural systems, and ongoing research in reinforcement learning-based quantum teleportation.</p>
+        <p>Alongside technical development, I serve as Chair of the IEEE Computer Society Student Branch Chapter, organizing technical events and supporting student collaboration. I also lead the Google Gemini Student Community.</p>
+        <div class="tags">
+          <span class="tag">zero trust</span><span class="tag">fuzzy inference</span><span class="tag">blockchain analytics</span><span class="tag">full-stack</span>
+          <span class="tag alt">machine learning</span><span class="tag alt">ieee chapter chair</span><span class="tag alt">research</span>
+        </div>
+      </div>
+      <dl class="vitals glass">
+        <div><dt>Location</dt><dd>Kolkata, West Bengal, IN</dd></div>
+        <div><dt>Degree</dt><dd>B.Tech CSE (Cybersecurity), 3rd year</dd></div>
+        <div><dt>University</dt><dd>Institute of Engineering &amp; Management, Kolkata</dd></div>
+        <div><dt>CGPA</dt><dd class="hi">9.10 (up to 4th semester)</dd></div>
+        <div><dt>Dept rank</dt><dd class="hi">2nd (2025&ndash;2026)</dd></div>
+        <div><dt>Graduating</dt><dd>2028</dd></div>
+        <div><dt>Status</dt><dd class="hi">Open to internships</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:ashnaislam03@gmail.com">ashnaislam03@gmail.com</a></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Featured projects</h2>
+    <p class="sec-sub">Open a project for the full technical showcase.</p>
+    <div class="projects-grid"><article class="project glass" data-tilt data-open="minipay"><div class="p-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="36" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M6 21h36" stroke="currentColor" stroke-width="2.5"/><circle cx="34" cy="30" r="3" fill="currentColor"/></svg></div><p class="p-meta">Full-stack &middot; FinTech &middot; Developed</p><h3>MiniPay: Digital Wallet &amp; Payment Platform</h3><p class="p-sum">Secure authentication, simulated peer-to-peer transfers, a double-entry ledger, atomic transactions and idempotency controls.</p><div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag alt">PostgreSQL</span><span class="tag alt">Prisma</span><span class="tag alt">JWT</span><span class="tag alt">Docker</span></div><div class="p-actions"><button type="button" class="btn btn-primary btn-sm" data-open="minipay" aria-haspopup="dialog">OPEN PROJECT &rarr;</button><a class="link" href="https://mini-qcsehzbo1-ashna13.vercel.app/login" target="_blank" rel="noopener">Live project &#8599;</a></div></article><article class="project glass" data-tilt data-open="ethereum"><div class="p-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5l13 20-13 8-13-8zM24 36l13-8-13 15-13-15z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg></div><p class="p-meta">Blockchain security &middot; ML &middot; Sep 2026&ndash;present</p><h3>Ethereum Blockchain Fraud Wallet Detection</h3><p class="p-sum">Hybrid pipeline over ~19,000 Ethereum wallets: Random Forest, Isolation Forest and rule-based scoring, combined by conflict-aware discounted belief fusion.</p><div class="tags"><span class="tag">Random Forest</span><span class="tag">Isolation Forest</span><span class="tag">Belief Fusion</span><span class="tag alt">Ethereum</span></div><div class="p-actions"><button type="button" class="btn btn-primary btn-sm" data-open="ethereum" aria-haspopup="dialog">OPEN PROJECT &rarr;</button><a class="link" href="https://blockchain-lime-one.vercel.app" target="_blank" rel="noopener">Live project &#8599;</a></div></article><article class="project glass" data-tilt data-open="zerotrust"><div class="p-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5l15 6v11c0 10-6 17-15 21C15 39 9 32 9 22V11z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M17 24l5 5 9-10" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></div><p class="p-meta">Cybersecurity research &middot; May&ndash;Jul 2026 &middot; Published</p><h3>Context-Aware Fuzzy Logic Engine for Zero Trust Access Control</h3><p class="p-sum">Mamdani fuzzy inference for continuous trust scoring and adaptive MFA enforcement. Published at IEEE CIACON 2026.</p><div class="tags"><span class="tag">Python</span><span class="tag">Scikit-fuzzy</span><span class="tag">NumPy</span><span class="tag alt">Streamlit</span></div><div class="p-actions"><button type="button" class="btn btn-primary btn-sm" data-open="zerotrust" aria-haspopup="dialog">OPEN PROJECT &rarr;</button><a class="link" href="https://doi.org/10.1109/CIACON70148.2026.11688234" target="_blank" rel="noopener">IEEE paper &#8599;</a></div></article><article class="project glass" data-tilt><div class="p-thumb" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="12" cy="14" r="4" fill="currentColor"/><circle cx="36" cy="12" r="4" fill="currentColor"/><circle cx="24" cy="36" r="4" fill="currentColor"/><path d="M12 14l12 22 12-24z" fill="none" stroke="currentColor" stroke-width="2"/></svg></div><p class="p-meta">ML + security</p><h3>ML-Based Network Anomaly Detection</h3><p class="p-sum">End-to-end pipeline: live Nmap scanning feeds an Isolation Forest for unsupervised outlier detection on traffic features. Containerised with Docker on Kali Linux.</p><div class="tags"><span class="tag">Python</span><span class="tag">Isolation Forest</span><span class="tag">Nmap</span><span class="tag alt">Docker</span><span class="tag alt">Kali Linux</span></div><div class="p-actions"><a class="link" href="https://www.linkedin.com/posts/ashna-islam_from-basic-network-scanning-to-ml-based-anomaly-ugcPost-7431263703167029248-SmWy/?utm_source=share&amp;utm_medium=member_android&amp;rcm=ACoAAEQABsAB_XkwwhMjrjZYgJ9yEpZ795G6Uyc" target="_blank" rel="noopener">Project description &#8599;</a></div></article></div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Research files</h2>
+    <p class="sec-sub">Open a dossier for the full research view.</p>
+    <div class="dossiers">
+      <article class="dossier" data-status="published">
+        <button type="button" class="dossier-head" data-open="zerotrust" aria-haspopup="dialog">
+          <span class="file-id">FILE ZT-01</span><span class="stamp pub">PUBLISHED</span>
+          <span class="d-title">Context-Aware Fuzzy Logic Engine for Continuous Zero Trust Access Control</span>
+          <span class="d-line">Mamdani Fuzzy Inference System &middot; IEEE CIACON 2026</span>
+          <span class="open-hint" aria-hidden="true">open dossier &rarr;</span>
+        </button>
+        <p class="d-links"><a href="https://doi.org/10.1109/CIACON70148.2026.11688234" target="_blank" rel="noopener">IEEE DOI: 10.1109/CIACON70148.2026.11688234</a><a href="https://www.researchgate.net/publication/414628419_Context_Aware_Fuzzy_Logic_Engine_for_Continuous_Zero_Trust_Access_Control" target="_blank" rel="noopener">ResearchGate</a></p>
+      </article>
+      <article class="dossier" data-status="ongoing">
+        <button type="button" class="dossier-head" data-open="quantum" aria-haspopup="dialog">
+          <span class="file-id">FILE QT-02</span><span class="stamp wip">ONGOING RESEARCH</span>
+          <span class="d-title">Noise-Aware Adaptive n-Qubit Quantum Teleportation</span>
+          <span class="d-line">Reinforcement learning over dynamic quantum channels &middot; since Jan 2026 &middot; not yet published</span>
+          <span class="open-hint" aria-hidden="true">open dossier &rarr;</span>
+        </button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <span id="leadership"></span>
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Experience &amp; leadership</h2>
+    <ol class="timeline"><li class="tl"><span class="tl-date">Jun&ndash;Jul 2026</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t1"><span class="tl-role">Cybersecurity Intern</span><span class="tl-org">West Bengal Electronics Industry Development Corporation Limited (WEBEL)</span></button><div class="collapse" id="t1"><div class="collapse-in"><ul><li>Administered Linux systems using file permissions, package management, and SELinux.</li><li>Analyzed system logs, AWStats reports, and database security.</li><li>Automated system administration tasks using Bash scripting.</li></ul><p class="tl-skills">Linux &middot; SELinux &middot; Bash &middot; System Security &middot; AWStats &middot; Database Security</p></div></div></div></li><li class="tl"><span class="tl-date">18 May&ndash;31 Jul 2026</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t2"><span class="tl-role">Summer Research Intern, Zero Trust Security</span><span class="tl-org">IDC Lab, University of Engineering and Management, Kolkata (CST, CSIT, CSE Cybersecurity and CSE Networks)</span></button><div class="collapse" id="t2"><div class="collapse-in"><ul><li>Developed a context-aware Zero Trust access control system using Mamdani Fuzzy Inference.</li><li>Implemented sigmoid normalization, exponential time decay, and dynamic risk scaling to generate continuous trust scores.</li><li>Designed adaptive multi-factor authentication enforcement through a Python-based web gateway.</li><li>Addressed dormant-account and brute-force attack scenarios.</li><li>Published the associated research at IEEE CIACON 2026.</li></ul><p class="tl-skills">Python &middot; Scikit-fuzzy &middot; NumPy &middot; Streamlit &middot; Zero Trust Architecture &middot; Fuzzy Logic &middot; Adaptive MFA</p><p><button type="button" class="btn btn-ghost btn-sm" data-open="zerotrust" aria-haspopup="dialog">VIEW THE FULL ZERO TRUST PROJECT &rarr;</button></p></div></div></div></li><li class="tl"><span class="tl-date">Dec 2025&ndash;Jan 2026</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t3"><span class="tl-role">Research Project Intern, AI &amp; IoT Agriculture</span><span class="tl-org">IEDC Lab, IEM Kolkata (CST / CSIT / CSE CS&amp;NW)</span></button><div class="collapse" id="t3"><div class="collapse-in"><p><b>Project:</b> Neural Network-Based Crop Recommendation System.</p><ul><li>Developed a neural network-based crop recommendation system using soil, temperature, humidity, rainfall, and NPK parameters.</li><li>Performed data preprocessing and feature engineering.</li><li>Deployed the machine learning backend on AWS.</li><li>Implemented a Raspberry Pi IoT edge server for agricultural decision support.</li></ul><p class="tl-skills">Python &middot; Neural Networks &middot; Machine Learning &middot; AWS &middot; Raspberry Pi &middot; IoT &middot; Data Preprocessing</p><p><a class="link" href="https://suggest.cropsage.qzz.io/" target="_blank" rel="noopener">Crop Sage live site &#8599;</a></p></div></div></div></li><li class="tl"><span class="tl-date">Feb 2025&ndash;present</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t4"><span class="tl-role">Chair</span><span class="tl-org">IEEE Computer Society Student Branch Chapter, IEM Kolkata</span></button><div class="collapse" id="t4"><div class="collapse-in"><p>Organized 15 technical events for 100+ members. Organized technical events, workshops, and speaker sessions; coordinated collaboration across student branches; supported technical engagement and student participation.</p></div></div></div></li><li class="tl"><span class="tl-date">Study abroad</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t5"><span class="tl-role">Cybersecurity Study Abroad Program</span><span class="tl-org">Thailand</span></button><div class="collapse" id="t5"><div class="collapse-in"><ul><li>Topics: networking, malware analysis, cryptography, Wi-Fi security, firewalls, honeypots, and security design principles.</li><li>Practical training: OSINT, reconnaissance, network traffic analysis, network scanning, password auditing, hashing, data integrity, and steganography.</li><li>Tools: Hashcat, John the Ripper.</li></ul></div></div></div></li><li class="tl"><span class="tl-date">Leadership</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t6"><span class="tl-role">President</span><span class="tl-org">Google Gemini Student Community, UEM Kolkata</span></button><div class="collapse" id="t6"><div class="collapse-in"><p>Leading the campus Google AI community: coordinating developer workshops, hands-on sessions on generative AI tools, and building a student pipeline into Google&rsquo;s ecosystem.</p></div></div></div></li><li class="tl"><span class="tl-date">Leadership</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t7"><span class="tl-role">Sergeant at Arms</span><span class="tl-org">Toastmasters Club, UEM Kolkata</span></button><div class="collapse" id="t7"><div class="collapse-in"><p>Because a researcher who can&rsquo;t present findings is just expensive storage. Toastmasters sharpened the communication skills that cybersecurity briefings, conference talks, and interviews demand.</p></div></div></div></li><li class="tl"><span class="tl-date">Jun 2024&ndash;2028 (expected)</span><div class="tl-card glass"><button type="button" class="toggle" aria-expanded="false" aria-controls="t8"><span class="tl-role">B.Tech, Computer Science &amp; Engineering (Cybersecurity)</span><span class="tl-org">Institute of Engineering and Management, Kolkata</span></button><div class="collapse" id="t8"><div class="collapse-in"><p>CGPA 9.10 (up to 4th semester), 2nd rank in department (2025&ndash;2026). Class XII: 80.1% and Class X: 93.2%, Shri Shikshayatan School, Kolkata.</p></div></div></div></li></ol>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Skills dashboard</h2>
+    <p class="sec-sub">Filter by category, then hover, focus, or tap a skill to see where I&rsquo;ve used it.</p>
+    <div class="filters" role="group" aria-label="Skill categories"><button type="button" class="f-btn on" data-f="all" aria-pressed="true">All</button><button type="button" class="f-btn" data-f="lang" aria-pressed="false">Programming languages</button><button type="button" class="f-btn" data-f="front" aria-pressed="false">Frontend</button><button type="button" class="f-btn" data-f="back" aria-pressed="false">Backend</button><button type="button" class="f-btn" data-f="db" aria-pressed="false">Databases &amp; ORM</button><button type="button" class="f-btn" data-f="ml" aria-pressed="false">Machine learning</button><button type="button" class="f-btn" data-f="sec" aria-pressed="false">Cybersecurity</button><button type="button" class="f-btn" data-f="tools" aria-pressed="false">Security tools</button><button type="button" class="f-btn" data-f="chain" aria-pressed="false">Blockchain</button><button type="button" class="f-btn" data-f="cloud" aria-pressed="false">Cloud &amp; DevOps</button><button type="button" class="f-btn" data-f="os" aria-pressed="false">Operating systems</button><button type="button" class="f-btn" data-f="quantum" aria-pressed="false">Quantum computing</button><button type="button" class="f-btn" data-f="core" aria-pressed="false">Core CS</button></div>
+    <p class="readout glass" id="skillReadout" role="status" aria-live="polite">&gt; select a skill</p>
+    <div class="chips skill-cloud glass" id="skillCloud"><button type="button" class="chip" data-cat="lang" data-tip="Zero Trust fuzzy engine (Scikit-fuzzy, NumPy, Streamlit) and my ML pipelines.">Python</button><button type="button" class="chip" data-cat="lang" data-tip="Listed in my skills.">Java</button><button type="button" class="chip" data-cat="lang" data-tip="MiniPay front end and back end.">TypeScript</button><button type="button" class="chip" data-cat="lang" data-tip="This portfolio, including the game and terminal, is plain JavaScript.">JavaScript</button><button type="button" class="chip" data-cat="lang" data-tip="Listed in my skills.">C</button><button type="button" class="chip" data-cat="lang" data-tip="Listed in my skills.">SQL</button><button type="button" class="chip" data-cat="front" data-tip="MiniPay front end.">React</button><button type="button" class="chip" data-cat="front" data-tip="This portfolio is hand-written HTML.">HTML</button><button type="button" class="chip" data-cat="front" data-tip="This portfolio is hand-written CSS.">CSS</button><button type="button" class="chip" data-cat="back" data-tip="MiniPay back end.">Node.js</button><button type="button" class="chip" data-cat="back" data-tip="MiniPay REST API.">Express.js</button><button type="button" class="chip" data-cat="back" data-tip="MiniPay RESTful APIs.">REST APIs</button><button type="button" class="chip" data-cat="back" data-tip="Listed in my skills.">Django</button><button type="button" class="chip" data-cat="back" data-tip="Listed in my skills.">Flask</button><button type="button" class="chip" data-cat="db" data-tip="MiniPay relational database.">PostgreSQL</button><button type="button" class="chip" data-cat="db" data-tip="MiniPay ORM and schema.">Prisma</button><button type="button" class="chip" data-cat="db" data-tip="Listed in my skills.">MySQL</button><button type="button" class="chip" data-cat="db" data-tip="Listed in my skills.">MariaDB</button><button type="button" class="chip" data-cat="db" data-tip="Listed in my skills.">Supabase</button><button type="button" class="chip" data-cat="ml" data-tip="Ethereum wallet fraud detection.">Random Forest</button><button type="button" class="chip" data-cat="ml" data-tip="Ethereum fraud detection and network anomaly detection.">Isolation Forest</button><button type="button" class="chip" data-cat="ml" data-tip="Crop recommendation system at the IEDC Lab.">Neural Networks</button><button type="button" class="chip" data-cat="ml" data-tip="Mamdani fuzzy inference in my published Zero Trust research.">Fuzzy Logic</button><button type="button" class="chip" data-cat="ml" data-tip="PPO, DQN and SAC under exploration in my quantum teleportation research.">Reinforcement Learning</button><button type="button" class="chip" data-cat="ml" data-tip="Listed in my skills.">Bayesian Models</button><button type="button" class="chip" data-cat="ml" data-tip="Listed in my skills.">Scikit-learn</button><button type="button" class="chip" data-cat="sec" data-tip="Published research at IEEE CIACON 2026.">Zero Trust</button><button type="button" class="chip" data-cat="sec" data-tip="Zero Trust access-control research.">Access Control</button><button type="button" class="chip" data-cat="sec" data-tip="Thailand study abroad program; IIT Kharagpur certification.">Cryptography</button><button type="button" class="chip" data-cat="sec" data-tip="Thailand program and IIT Kharagpur coursework.">Network Security</button><button type="button" class="chip" data-cat="sec" data-tip="Hands-on labs in the Thailand program.">OSINT</button><button type="button" class="chip" data-cat="sec" data-tip="IIT Kharagpur Computer Networks and Internet Protocol certification.">TCP/IP</button><button type="button" class="chip" data-cat="sec" data-tip="3rd place at Packet Hijackers; SkillUp certification.">Ethical Hacking</button><button type="button" class="chip" data-cat="tools" data-tip="Network scanning in my anomaly-detection project.">Nmap</button><button type="button" class="chip" data-cat="tools" data-tip="Listed in my skills.">Wireshark</button><button type="button" class="chip" data-cat="tools" data-tip="Password auditing labs in the Thailand program.">Hashcat</button><button type="button" class="chip" data-cat="tools" data-tip="Password auditing labs in the Thailand program.">John the Ripper</button><button type="button" class="chip" data-cat="tools" data-tip="Listed in my skills.">Steghide</button><button type="button" class="chip" data-cat="tools" data-tip="Log analysis at WEBEL.">AWStats</button><button type="button" class="chip" data-cat="tools" data-tip="Network traffic analysis in the Thailand program.">Packet Analysis</button><button type="button" class="chip" data-cat="chain" data-tip="Ethereum wallet fraud detection project.">Ethereum</button><button type="button" class="chip" data-cat="chain" data-tip="Wallet-level features in the fraud detection project.">Wallet Analysis</button><button type="button" class="chip" data-cat="chain" data-tip="Ethereum wallet fraud detection project.">Blockchain Analytics</button><button type="button" class="chip" data-cat="cloud" data-tip="ML backend deployment at the IEDC Lab.">AWS EC2</button><button type="button" class="chip" data-cat="cloud" data-tip="MiniPay.">Docker</button><button type="button" class="chip" data-cat="cloud" data-tip="Listed in my skills.">Render</button><button type="button" class="chip" data-cat="cloud" data-tip="Listed in my skills.">Git</button><button type="button" class="chip" data-cat="cloud" data-tip="Listed in my skills.">GitHub</button><button type="button" class="chip" data-cat="cloud" data-tip="Listed in my skills.">OpenStack</button><button type="button" class="chip" data-cat="cloud" data-tip="Listed in my skills.">Tableau</button><button type="button" class="chip" data-cat="os" data-tip="Platform for my network anomaly-detection project.">Kali Linux</button><button type="button" class="chip" data-cat="os" data-tip="Linux administration and SELinux at WEBEL.">RHEL</button><button type="button" class="chip" data-cat="os" data-tip="Listed in my skills.">Windows</button><button type="button" class="chip" data-cat="os" data-tip="Listed in my skills.">Ubuntu</button><button type="button" class="chip" data-cat="quantum" data-tip="Ongoing research.">Quantum Teleportation</button><button type="button" class="chip" data-cat="quantum" data-tip="Ongoing research.">Quantum Channels</button><button type="button" class="chip" data-cat="core" data-tip="Listed in my skills.">DSA</button><button type="button" class="chip" data-cat="core" data-tip="Listed in my skills.">OOP</button><button type="button" class="chip" data-cat="core" data-tip="Listed in my skills.">DBMS</button><button type="button" class="chip" data-cat="core" data-tip="Listed in my skills.">Operating Systems</button><button type="button" class="chip" data-cat="core" data-tip="Listed in my skills.">Computer Networks</button></div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Recognition &amp; certifications</h2>
+    <ul class="awards">
+      <li><span class="medal gold">RANK 2</span><span>Department rank, 2025&ndash;2026 (IEM Kolkata)</span></li>
+      <li><span class="medal gold">RANK 3</span><span>Department rank, first-year CGPA 9.08 (IEM Kolkata, 2024)</span></li>
+      <li><span class="medal silver">2ND PLACE</span><span>Poster competition: Post-Quantum Security Threats</span></li>
+      <li><span class="medal bronze">3RD PLACE</span><span>Packet Hijackers ethical hacking competition</span></li>
+    </ul>
+    <h3 class="sub-title" id="certifications">Certifications</h3>
+    <ul class="certs glass">
+      <li>Cryptography and Network Security <em>IIT Kharagpur</em></li>
+      <li>Computer Networks and Internet Protocol <em>IIT Kharagpur</em></li>
+      <li>Advanced System Security &amp; Secure Design <em>University of Colorado</em></li>
+      <li>Ethical Hacking &amp; Penetration Testing <em>SkillUp</em></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2 class="sec-title reveal-head"><span class="sec-sym">//</span> Let&rsquo;s build something</h2>
+    <div class="contact-term glass">
+      <p class="prompt-line"><span class="p">&gt;</span> establish_connection</p>
+      <p class="contact-sub">I&rsquo;m looking for software, cybersecurity or ML internships where I can ship real code and do real research. If that&rsquo;s you, send a message.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:ashnaislam03@gmail.com">EMAIL</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ashna-islam/" target="_blank" rel="noopener">LINKEDIN</a>
+        <a class="btn btn-ghost" href="https://github.com/Ashna-Grey" target="_blank" rel="noopener">GITHUB</a>
+        <a class="btn btn-ghost" href="assets/Ashna_Islam_Resume.pdf" download="Ashna_Islam_Resume.pdf">RESUME (PDF)</a>
+      </div>
+      <p class="loc">Kolkata, West Bengal, India</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><span>Built by Ashna Islam &middot; 2026</span><span>You can beat my firewall. But can you make the hardest decision and hire me?</span></footer>
+
+<button type="button" id="termToggle" class="term-fab" aria-expanded="false" aria-controls="term" aria-label="Open terminal">&gt;_</button>
+<div id="term" class="term" role="dialog" aria-label="ASHNA.OS terminal" hidden>
+  <div class="term-head"><span>ashna.os terminal</span><button type="button" id="termClose" aria-label="Close terminal">&times;</button></div>
+  <div id="termOut" class="term-out" role="log" aria-live="polite"></div>
+  <form id="termForm" class="term-form" autocomplete="off"><label for="termIn" class="sr">Command</label><span aria-hidden="true">ashna@os:~$</span><input id="termIn" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="type help"></form>
+</div>
+</div>
+
+<div id="projView" class="pv" role="dialog" aria-modal="true" aria-labelledby="pvTitle" hidden>
+  <div class="pv-bar">
+    <button type="button" class="chip-btn pv-back" id="pvBack">&larr; Back to Projects</button>
+    <span class="pv-crumb" id="pvCrumb" aria-hidden="true"></span>
+    <i class="pv-progress" id="pvProgress" aria-hidden="true"></i>
+  </div>
+  <div class="pv-scroll" id="pvScroll" tabindex="-1"><div id="pvBody"></div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="js/audio.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
